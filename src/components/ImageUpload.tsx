@@ -42,9 +42,13 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
   }, [onImagesSelected]);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
+    const files = Array.from(e.target.files || []).filter(file => 
+      file.type.startsWith('image/')
+    );
     setSelectedImages(files);
     onImagesSelected(files);
+    // Reset the input to allow selecting the same files again if needed
+    e.target.value = '';
   };
 
   const removeImage = (index: number) => {
@@ -73,6 +77,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
           accept="image/*"
           onChange={handleFileSelect}
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          id="file-upload"
         />
         
         <div className="space-y-4">
