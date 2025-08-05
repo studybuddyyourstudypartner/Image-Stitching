@@ -163,13 +163,13 @@ export const HomePage: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+          <h1 className="text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-6 animate-pulse">
             Welcome to StitchSmart
           </h1>
-          <p className="text-xl text-gray-600 mb-2">
+          <p className="text-2xl text-gray-700 mb-4 font-medium">
             Hi {user?.firstName}! Ready to stitch some medical images?
           </p>
-          <p className="text-lg text-gray-500 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             Advanced X-ray image stitching platform using computer vision algorithms 
             for seamless panoramic medical imaging.
           </p>
