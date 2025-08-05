@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Activity, TrendingUp, Shield, Eye, Clock } from 'lucide-react';
 
-const AdminPage: React.FC = () => {
+export const AdminPage: React.FC = () => {
   const userActivities = [
     { id: 1, user: 'John Doe', action: 'Uploaded images', time: '2 minutes ago', type: 'upload' },
     { id: 2, user: 'Jane Smith', action: 'Stitched images', time: '5 minutes ago', type: 'process' },
@@ -141,5 +141,3 @@ const AdminPage: React.FC = () => {
     </div>
   );
 };
-
-export default AdminPage;
