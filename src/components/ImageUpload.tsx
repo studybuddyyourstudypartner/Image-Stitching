@@ -31,9 +31,13 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
     e.stopPropagation();
     setDragActive(false);
 
-    const files = Array.from(e.dataTransfer.files).filter(file => 
-      file.type.startsWith('image/')
-    );
+    const files = Array.from(e.dataTransfer.files).filter(file => {
+      const imageTypes = [
+        'image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp', 
+        'image/webp', 'image/svg+xml', 'image/tiff', 'image/tif'
+      ];
+      return imageTypes.includes(file.type.toLowerCase()) || file.type.startsWith('image/');
+    });
     
     if (files.length > 0) {
       setSelectedImages(files);
@@ -42,9 +46,13 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
   }, [onImagesSelected]);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []).filter(file => 
-      file.type.startsWith('image/')
-    );
+    const files = Array.from(e.target.files || []).filter(file => {
+      const imageTypes = [
+        'image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp', 
+        'image/webp', 'image/svg+xml', 'image/tiff', 'image/tif'
+      ];
+      return imageTypes.includes(file.type.toLowerCase()) || file.type.startsWith('image/');
+    });
     setSelectedImages(files);
     onImagesSelected(files);
     // Reset the input to allow selecting the same files again if needed
@@ -74,7 +82,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
         <input
           type="file"
           multiple
-          accept="image/*"
+          accept="image/*,.jpg,.jpeg,.png,.gif,.bmp,.webp,.svg,.tiff,.tif"
           onChange={handleFileSelect}
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
           id="file-upload"
@@ -92,7 +100,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
               Drag and drop your X-ray images here, or click to browse
             </p>
             <p className="text-sm text-gray-500">
-              Supports JPG, PNG, DICOM formats • Maximum 10 images
+              Supports all image formats (JPG, PNG, GIF, BMP, WebP, SVG, TIFF) • Maximum 10 images
             </p>
           </div>
         </div>
